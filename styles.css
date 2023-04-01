@@ -1,0 +1,64 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to right, #CBCE91FF, #EA738DFF);
+}
+
+.grid {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: 100px  repeat(5, 40px);
+}
+
+.grid button {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    border: 1px solid black;
+    font-size: 2rem;
+    outline: none;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.grid button:hover {
+    background-color: #a9a9a9;
+}
+
+.span-two {
+    grid-column: span 2;
+    color: #177517;
+    background-color: rgba(139, 0, 139, 0.8);
+}
+
+.output{
+    grid-column: 1 / -1;
+    background-color: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.output .prev{
+    color: rgba(255,255, 255, 0.75);
+    font-size: 1.5rem;
+}
+
+.output .curr{
+    color: white;
+    font-size: 2.5rem;
+}

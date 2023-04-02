@@ -46,9 +46,21 @@ class Calculator {
                 computation = prev * current
                 break
             case '÷':
+                if (current == 0) {
+                    this.currentOperandTextElement.innerText = 'Dzielenie przez 0 niedozwolone'
+                    this.previousOperand = ''
+                    this.operation = undefined
+                    return
+                }
                 computation = prev / current
                 break
             case '/':
+                if (current == 0) {
+                    this.currentOperandTextElement.innerText = 'Dzielenie przez 0 niedozwolone'
+                    this.previousOperand = ''
+                    this.operation = undefined
+                    return
+                }
                 computation = prev / current
                 break
             default:
@@ -101,9 +113,10 @@ const calculator = new Calculator(previousOperandTextElement, currentOperandText
 
 numberButtons.forEach(button => {
     button.addEventListener('click', () => {
-        console.log(button.inn)
-        calculator.appendNumber(button.innerText)
-        calculator.updateDisplay()
+        if (currentOperandTextElement.innerText.length < 15) {
+            calculator.appendNumber(button.innerText)
+            calculator.updateDisplay()
+        }
     })
 })
 
@@ -127,15 +140,19 @@ allClearButton.addEventListener('click', button => {
 deleteButton.addEventListener('click', button => {
     calculator.delete()
     calculator.updateDisplay()
+
 })
 
 document.addEventListener('keydown', function (event) {
+    const currentOperandTextElement = document.querySelector('[data-curr]')
     let patternForNumbers = /[0-9]/g;
     let patternForOperators = /[+\-*\/]/g
     if (event.key.match(patternForNumbers)) {
         event.preventDefault();
-        calculator.appendNumber(event.key)
-        calculator.updateDisplay()
+        if (currentOperandTextElement.innerText.length < 15) {
+            calculator.appendNumber(event.key)
+            calculator.updateDisplay()
+        }
     }
     if (event.key === '.') {
         event.preventDefault();
